@@ -7,7 +7,7 @@ const io = require('socket.io')(server, {
     }
 });
 
-const port = 3000;
+const port = 4000;
 
 io.on('connection', (socket) => {
     socket.on('join', (data) => {
