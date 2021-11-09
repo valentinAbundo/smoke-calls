@@ -8,6 +8,7 @@ const io = require('socket.io')(server, {
 });
 
 const port = 4000;
+const peerPort = 4001;
 
 io.on('connection', (socket) => {
     socket.on('join', (data) => {
@@ -25,3 +26,7 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log(`Server running port ${port}`);
 })
+const { PeerServer } = require('peer');
+
+const peerServer = PeerServer({port: peerPort, path: '/'})
+console.log(`Peer running port ${peerPort}`);
