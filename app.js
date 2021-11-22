@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
@@ -28,5 +29,8 @@ server.listen(port, () => {
 })
 const { PeerServer } = require('peer');
 
-const peerServer = PeerServer({port: peerPort, path: '/'})
+const peerServer = PeerServer({port: peerPort, path: '/',ssl: {
+    key: fs.readFileSync('/key.key'),
+    cert: fs.readFileSync('/cert.crt')
+  }})
 console.log(`Peer running port ${peerPort}`);
